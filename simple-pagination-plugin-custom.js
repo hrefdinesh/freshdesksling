@@ -82,15 +82,21 @@ $.fn.simplePagination = function(options)
 				previous_html = '<' + settings.navigation_element + ' href="#" class="' + settings.html_prefix + '-navigation-previous';
 			previous_html += page_count === 1 || page_number === 1 ? ' ' + settings.html_prefix + '-navigation-disabled' : '';
 			previous_html += '" data-' + settings.html_prefix + '-page-number="' + previous_page + '">' + settings.previous_content + '</' + settings.navigation_element + '>';
-			previous_html += '<span><b>...</b></span>';
+			previous_html += '<span class="';
+			previous_html += page_count === 1 || page_number === 1 || page_number === 2 ? ' ' + settings.html_prefix + '-navigation-disabled' : '';
+			previous_html += '"><b>...</b></span>';
 			return previous_html;
 		}
 
 		function refresh_next(page_number)
 		{
+			
+			var page_count2 = (page_count - 1);
 			var next_page = page_number + 1 > page_count ? page_count : page_number + 1,
-			next_html = '<span><b>...</b></span>';
-				next_html += '<' + settings.navigation_element + ' href="#" class="' + settings.html_prefix + '-navigation-next';
+			next_html = '<span class="';
+			next_html += page_count === 1 || page_number === page_count2 || page_number === page_count  ? ' ' + settings.html_prefix + '-navigation-disabled' : '';
+			next_html += '"><b>...</b></span>';
+			next_html += '<' + settings.navigation_element + ' href="#" class="' + settings.html_prefix + '-navigation-next';
 			next_html += page_count === 1 || page_number === page_count ? ' ' + settings.html_prefix + '-navigation-disabled' : '';
 			next_html += '" data-' + settings.html_prefix + '-page-number="' + next_page + '">' + settings.next_content + '</' + settings.navigation_element + '>';
 			return next_html;
